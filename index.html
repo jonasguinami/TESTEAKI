@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardápio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styleindex.css" />
+    <script src="scriptindex.js" defer></script>
+</head>
+<body>
+
+    <div class="conteudo-principal">
+        <div class="topo">
+            <div id="bannerCarousel" class="banner-carousel">
+            </div>
+            <div class="perfil-status">
+                <div class="perfil">
+                    <img id="fotoPerfil" src="iconfoto.png" alt="Foto de perfil" />
+                </div>
+                <button id="statusBtn" class="status-btn">Status</button>
+                <button id="sobreBtn" class="sobre-btn">Sobre</button>
+            </div>
+
+        </div>
+        <h1 id="nomeLojaTitulo">Sua loja</h1>
+
+        <div class="side-buttons-container">
+            <button id="themeToggleButton" class="action-button theme-button">
+                <img src="moon.svg" alt="Modo Noturno">
+            </button>
+            <button id="searchToggleButton" class="action-button">
+                <img src="lupa.svg" alt="Pesquisar">
+            </button>
+            <button id="shareButton" class="action-button">
+                <img src="share.svg" alt="Compartilhar">
+            </button>
+        </div>
+
+        <div id="searchBarContainer" class="search-bar-container">
+            <input type="text" id="searchInput" placeholder="Buscar produtos...">
+            <button id="closeSearchButton" class="close-search-button">
+                <img src="xicon.svg" alt="Fechar Pesquisa"> </button>
+        </div>
+
+
+    </div>
+    <div id="cardapioContainer"></div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="fechar fechar-modal-item" aria-label="Fechar modal">
+                <img src="xicon.svg" alt="Fechar"/>
+            </button>
+            <h2 id="modal-nome"></h2>
+            <img id="modal-img" alt="Imagem do item" />
+            <p id="modal-ingredientes"></p>
+            <p id="modal-preco"></p>
+            <button id="modalAdicionarBtn" class="adicionar-btn">Adicionar</button>
+        </div>
+    </div>
+
+    <div id="sobreModal" class="modal">
+        <div class="modal-sobre-content">
+            <button class="fechar fechar-sobre"><img src="xicon.svg" alt="Fechar"></button>
+            <h2 id="sobreNome"></h2>
+            <p id="sobreDescricao"></p>
+
+            <div class="sobre-info-group">
+                <h3>Horário de Funcionamento</h3>
+                <div id="horariosFuncionamentoDisplay" class="horarios-display-container">
+                </div>
+            </div>
+
+            <div class="sobre-info-group">
+                <h3>Formas de Pagamento</h3>
+                <div id="sobrePagamentosDisplay" class="pagamentos-display-container">
+                </div>
+            </div>
+
+            <div class="sobre-info-group">
+                <h3>Endereço</h3>
+                <p id="sobreEndereco"></p>
+            </div>
+
+            <div class="sobre-info-group">
+                <h3>Contato</h3>
+                <p id="sobreContato"></p>
+            </div>
+        </div>
+    </div>
+
+    <button id="botaoCarrinho" aria-label="Abrir carrinho" title="Abrir carrinho">
+        <img src="cartadd.svg" alt="Ícone carrinho" />
+    </button>
+
+    <div id="carrinhoSidebar" class="carrinho-sidebar">
+        <div class="carrinho-header">
+            <button id="voltarCarrinhoBtn" class="carrinho-btn-voltar">
+                <img src="voltar.svg" alt="Voltar" />
+            </button>
+            <h2 class="carrinho-titulo">Pedidos</h2>
+            <button id="limparCarrinhoBtn" class="limpar-carrinho-btn">Limpar</button>
+        </div>
+
+        <div class="carrinho-items-container">
+            <div class="carrinho-item-exemplo" style="display: none;">
+                <div class="item-info">
+                    <h4 class="item-titulo">Nome do Item</h4>
+                    <p class="item-preco">R$ 00,00</p>
+                    <div class="item-adicionais-info">
+                        <p class="adicionais-texto">Adicionais: Sem adicionais</p>
+                        </div>
+                </div>
+                <div class="item-acoes">
+                    <div class="item-quantidade-controle">
+                        <button class="qty-btn less-qty"><img src="less.svg" alt="Remover"></button>
+                        <span class="item-quantidade">1</span>
+                        <button class="qty-btn add-qty"><img src="add.svg" alt="Adicionar"></button>
+                    </div>
+                    <button class="btn-editar-adicionais">Editar Adicionais</button>
+                    <button class="btn-toggle-adicionais"><img src="down.svg" alt="Mostrar adicionais"></button>
+                </div>
+            </div>
+            <p id="carrinhoVazioMsg" class="carrinho-mensagem-vazio">Seu carrinho está vazio.</p>
+        </div>
+
+        <div class="carrinho-footer">
+            <div class="carrinho-total">
+                <span>Total:</span>
+                <span id="carrinhoTotalValor">R$ 0,00</span>
+            </div>
+            <button id="finalizarPedidoBtn" class="carrinho-btn primary">Finalizar Pedido</button>
+            <button id="continuarComprandoBtn" class="carrinho-btn secondary">Continuar Comprando</button>
+        </div>
+    </div>
+    <div id="categoriaCarrossel" class="categoria-carrossel"></div>
+
+</body>

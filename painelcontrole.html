@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Painel do Lojista - Cardápio Responsivo</title>
+    <link rel="stylesheet" href="stylepainel1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar"> 
+    <div class="navbar-container"> 
+        <div class="navbar-left"> 
+            <button class="navbar-icon-button" id="userIconButton" title="Configurações do Usuário">
+                <img src="user.svg" alt="Ícone de Usuário" />
+            </button>
+            <img src="logopedeaki.png" alt="Logo PedeAki" class="navbar-logo" /> 
+            <span class="site-version">Versão Beta 1.3.0</span> 
+        </div> 
+
+        <div class="navbar-right"> 
+            <button class="navbar-button" onclick="location.href='painelpedido.html'">Pedidos</button> 
+            <button class="navbar-button" onclick="location.href='vendas.html'">Vendas</button> 
+            <button class="navbar-button" onclick="location.href='lojaedit.html'">Loja</button> 
+            <button class="navbar-button" onclick="location.href='painelcontrole.html'">Cardápio</button> 
+            <button class="navbar-icon-button" id="bellIconButton" title="Notificações de Pedidos">
+                <img src="bell.svg" alt="Ícone de Notificação" id="bellIcon" />
+            </button>
+        </div> 
+    </div> 
+</nav>
+
+<div id="userOptionsModal" class="modal hidden">
+    <div class="modal-content modal-card">
+       <span class="modal-close" data-modal="userOptionsModal">
+    <img src="xicon.svg" alt="Fechar" class="close-icon" />
+</span>
+        <h2>Opções do Usuário</h2>
+        <div class="user-options-grid">
+            <button class="option-card" id="configButton">
+                <img src="gear.svg" alt="Configurações" />
+                <span>Configurações</span>
+            </button>
+            <button class="option-card" id="supportButton">
+                <img src="headset.svg" alt="Suporte" />
+                <span>Suporte</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="userConfigModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="modal-close" data-modal="userConfigModal">
+    <img src="xicon.svg" alt="Fechar" class="close-icon" />
+</span>
+        <h2>Configurações</h2>
+        <form id="userConfigForm">
+            <div class="form-group">
+                <label for="userName">Nome:</label>
+                <input type="text" id="userName" placeholder="Nome do Usuário" />
+            </div>
+            <div class="form-group">
+                <label for="userEmail">Email:</label>
+                <input type="email" id="userEmail" placeholder="Email do Usuário" readonly />
+            </div>
+            <div class="form-group">
+                <label for="userPhone">Celular:</label>
+                <input type="tel" id="userPhone" placeholder="(XX) XXXXX-XXXX" />
+            </div>
+            <div class="form-group">
+                <label for="notificationVolume">Volume da Notificação:</label>
+                <div class="volume-control">
+                    <img src="volume.svg" alt="Volume" class="volume-icon" />
+                    <input type="range" id="notificationVolume" min="0" max="1" step="0.1" value="0.5" />
+                    <span id="volumeValue">50%</span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+        </form>
+    </div>
+</div>
+
+<div id="supportModal" class="modal hidden">
+    <div class="modal-content">
+           <span class="modal-close" data-modal="supportModal">
+    <img src="xicon.svg" alt="Fechar" class="close-icon" />
+</span>
+        <h2>Suporte</h2>
+        <p>Precisa de ajuda? Entre em contato conosco:</p>
+        <p>Email: <a href="mailto:suporte@pedeaki.com">suporte@pedeaki.com</a></p>
+        <p>Telefone: (XX) XXXX-XXXX</p>
+        <p>Horário de Atendimento: Segunda a Sexta, das 9h às 18h.</p>
+        <p>Você também pode visitar nossa página de <a href="#">Perguntas Frequentes</a>.</p>
+    </div>
+</div>
+
+<div id="notificationModal" class="modal hidden">
+    <div class="modal-content">
+           <span class="modal-close" data-modal="notificationModal">
+    <img src="xicon.svg" alt="Fechar" class="close-icon" />
+</span>
+        <h2>Notificações</h2>
+        <div id="notificationContent">
+            <p>Nenhum pedido no momento.</p>
+        </div>
+        </div>
+</div>
+
+<audio id="notificationSound" src="notification.mp3" preload="auto"></audio>
+
+
+
+<div class="panel">
+    <div class="panel-header">
+        <div class="panel-title">
+            <h2>Adicionar Itens</h2>
+            <p style="text-align: center; margin-top: -10px; margin-bottom: 16px; color: #666; font-size: 17px;">Adicione seu item abaixo:</p>
+        </div>
+        <a href="index.html" class="btn-view" target="_blank">Visualizar Cardápio</a>
+    </div>
+
+    <div class="form-group">
+        <label for="addItemImage" class="input-label-text">Imagem</label> 
+        
+        <div class="upload-wrapper">
+            <label for="addItemImage" class="custom-file-btn">Selecionar</label>
+            
+            <input type="file" id="addItemImage" accept="image/*">
+            
+            <img id="imagePreview" src="" alt="Pré-visualização" class="image-preview-thumbnail hidden">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" id="title" placeholder="Ex: Pizza Margherita" />
+    </div>
+
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea id="description" rows="3" placeholder="Descreva os ingredientes..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="price">Preço (R$)</label>
+        <input type="number" id="price" step="0.01" placeholder="Ex: 35.00" />
+    </div>
+
+    <div class="form-group">
+        <label for="category">Categoria</label>
+        <select id="category">
+            <option value="">Selecione uma categoria</option>
+        </select>
+        <input type="text" id="newCategory" placeholder="Criar nova categoria (opcional)" />
+    </div>
+
+    <button class="btn-add" onclick="addItem()">Adicionar ao Cardápio</button>
+    <button class="btn-save" id="saveMenu">Salvar Cardápio</button>
+</div>
+
+<div class="menu"> 
+    <h2>Cardápio</h2>
+    <p style="text-align: center; margin-top: -7px; margin-bottom: 16px; color: #666; font-size: 17px;">
+        Organize suas categorias abaixo:
+    </p>
+    <div class="tabs" id="categoryTabs"></div>
+    <div id="menuList"></div>
+</div>
+
+<div id="adicionaisModal" class="modal hidden">
+    <div class="modal-content adicionais-modal">
+
+        <div class="modal-close"> <img src="xicon.svg" alt="Fechar" />
+        </div>
+
+        <h2>Gerenciar Adicionais</h2>
+
+        <div class="adicional-form">
+            <input type="text" id="adicionalNome" placeholder="Nome do adicional" />
+            <input type="number" id="adicionalPreco" placeholder="Preço (ex: 2.50)" step="0.01" />
+
+            <div class="upload-container">
+                <label for="adicionalImagem" class="upload-label">Imagem</label>
+                <input type="file" id="adicionalImagem" accept="image/*" />
+            </div>
+            <img id="previewImagem" src="" alt="Pré-visualização da imagem" class="hidden" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+            <button id="salvarAdicionais" class="btn blue">Adicionar</button>
+        </div>
+
+        <ul id="adicionaisList" class="adicionais-list"></ul>
+
+    </div>
+</div>
+
+<div id="editModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="modal-close close-btn" data-modal="editModal"> 
+            <img src="xicon.svg" alt="Fechar" style="width: 100%; height: 100%; object-fit: contain; cursor: pointer;" />
+        </span>
+
+        <h2>Editar Item</h2> <img id="editItemImagePreview" src="" alt="Imagem do item" class="image-preview" style="display:block; margin-bottom: 10px;" />
+
+        <div class="upload-container" style="margin-bottom: 16px;">
+            <label class="upload-label" for="editItemImage">Selecionar</label>
+            <input type="file" id="editItemImage" accept="image/*" onchange="previewEditImage(event)" />
+        </div>
+        <input type="text" id="editItemTitle" placeholder="Título" />
+        <input id="editItemDescription" class="input-descricao" type="text" placeholder="Descrição" />
+        <input type="number" id="editItemPrice" placeholder="Preço" />
+        <select id="editItemCategory"></select>
+        <button onclick="saveEditedItem()" class="btn-action">Salvar</button> 
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="scriptpainelcontrole1.js"></script>
+</body>
+</html>

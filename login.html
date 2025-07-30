@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Lojista</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylelogin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <h2>Bem-vindo de volta!</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="identificador">E-mail, Celular, CPF ou CNPJ</label>
+                    <input type="text" id="identificador" name="identificador" placeholder="Seu identificador" required>
+                </div>
+
+                <div class="input-group password-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="********" required>
+                    <span class="toggle-password visible" id="toggleSenha"></span>
+                </div>
+
+                <button type="submit" class="login-button">Entrar</button>
+            </form>
+            <div id="message" class="message"></div>
+            <div class="links-uteis">
+                <a href="#" id="forgotPasswordLink">Esqueceu a senha?</a>
+                <a href="register.html">Ainda não tem conta? Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="forgotPasswordModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalButton">&times;</span>
+            <h3>Recuperar Senha</h3>
+            <p>Informe seu e-mail, celular, CPF ou CNPJ para enviarmos as instruções de recuperação.</p>
+            <form id="forgotPasswordForm">
+                <div class="input-group">
+                    <label for="recoveryIdentifier">Identificador</label>
+                    <input type="text" id="recoveryIdentifier" name="recoveryIdentifier" placeholder="E-mail, Celular, CPF ou CNPJ" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" id="sendEmailButton" class="modal-button primary">Enviar por E-mail</button>
+                    <button type="button" id="sendWhatsappButton" class="modal-button secondary">Enviar por WhatsApp</button>
+                </div>
+            </form>
+            <div id="modalMessage" class="message"></div>
+
+            <form id="whatsappCodeForm" style="display:none;">
+                <p>Insira o código de 6 dígitos que enviamos para o seu WhatsApp.</p>
+                <div class="input-group">
+                    <label for="whatsappCode">Código de Verificação</label>
+                    <input type="text" id="whatsappCode" name="whatsappCode" placeholder="______" maxlength="6" required>
+                </div>
+                <button type="submit" id="verifyWhatsappCodeButton" class="modal-button primary">Verificar Código</button>
+                <div id="whatsappMessage" class="message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scriptlogin.js"></script>
+</body>

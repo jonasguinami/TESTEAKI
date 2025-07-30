@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added more transitions */
+}
+
+body {
+    background: #f4f4f4;
+    padding-top: 90px; /* Space for fixed navbar */
+    display: flex; /* Keeping flex for overall body content if needed, but not for navbar fixed pos */
+    flex-direction: column; /* Ensure content flows vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base variables (if not already defined in your main style.css) */
+/* Assuming these are from your original `style.css` for the plans section */
+:root {
+    --primary-color: #6a0dad; /* Um roxo vibrante */
+    --secondary-color: #ff6f61; /* Um coral vibrante */
+    --text-color: #333;
+    --background-light: #f5f5f5;
+    --background-dark: #e0e0e0;
+    --border-radius-large: 30px;
+    --border-radius-medium: 15px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --button-gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    
+    /* NOVO DEGRADÊ DA NAVBAR: Começa roxo e termina alaranjado */
+    --navbar-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); 
+}
+
+
+/* Título geral - if this is for the main content h2 */
+h2 {
+    text-align: center;
+    color: var(--primary-color); /* Using your primary color */
+    margin-bottom: 20px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78px; /* Ligeiramente mais alta */
+    background: var(--navbar-gradient); /* Usando o degradê roxo */
+    background-size: 400% 400%; /* Para animação de fluxo */
+    animation: navbarGradientFlow 15s ease infinite; /* Animação mais longa e suave */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-radius: 0 0 var(--border-radius-large) var(--border-radius-large); /* Border-radius na parte inferior */
+    backdrop-filter: blur(8px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Animação gradiente */
+@keyframes navbarGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Container da navbar */
+.navbar-container {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    align-items: center; /* Alinha todos os itens do container verticalmente */
+    justify-content: space-between;
+    gap: 1rem; /* Ajuste o gap geral */
+}
+
+/* Lado esquerdo da navbar */
+.navbar-left {
+    display: flex;
+    align-items: center; /* Alinha ícone e logo */
+    gap: 0.75rem; /* Espaço entre user icon, logo e version */
+}
+
+/* Logo */
+.navbar-logo {
+    height: 60px; /* Tamanho da logo */
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* Versão do site */
+.site-version {
+    font-family: 'Poppins', sans-serif; /* Usando Poppins */
+    font-weight: 600; /* Mais negrito */
+    font-size: 0.9rem;
+    color: var(--background-light); /* Cor clara para o texto na navbar escura */
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* Lado direito da navbar (botões e bell icon) */
+.navbar-right {
+    display: flex;
+    align-items: center; /* Alinha botões e bell icon verticalmente */
+    gap: 0.75rem; /* Espaço entre botões e bell icon */
+    flex-wrap: nowrap; /* Tenta manter tudo em uma linha, para quebrar em mobile */
+    justify-content: flex-end;
+}
+
+/* Botões de Ícone na Navbar */
+.navbar-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove padding explícito, use o gap do flex */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Para alinhar verticalmente no flex container */
+}
+
+.navbar-icon-button img {
+    height: 30px; /* Tamanho dos ícones, ajuste conforme seu SVG */
+    width: 30px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)); /* Sombra para os ícones */
+    transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+}
+
+.navbar-icon-button:hover img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+
+/* Botões de Ação da navbar (Pedidos, Vendas, Loja, Cardápio) */
+.navbar-button {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo branco semi-transparente */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda transparente sutil */
+    padding: 0.6rem 1.2rem; /* Padding ajustado */
+    border-radius: 25px; /* Arredondado */
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background-light); /* Texto claro */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+    background-color: var(--background-light); /* Fundo mais sólido no hover */
+    color: var(--primary-color); /* Texto para o roxo primário no hover */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Efeito de levantar */
+    outline: none;
+    border-color: var(--background-light); /* Borda sólida no hover */
+}
+
+.navbar-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.1s;
+}
+
+
+/* Ajustes para dispositivos menores */
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px; /* Ajusta espaço para navbar expandida */
+    }
+    .navbar {
+        height: 120px; /* Aumenta a altura da navbar em mobile */
+        padding: 0.5rem 1rem;
+        border-radius: 0 0 25px 25px; /* Ajusta o border-radius para mobile */
+        flex-wrap: wrap; /* Permite que a navbar quebre em duas linhas se necessário */
+    }
+    .navbar-container {
+        flex-direction: column; /* Empilha os lados */
+        align-items: center; /* Centraliza a coluna */
+        gap: 0.5rem;
+    }
+    .navbar-left {
+        width: 100%; /* Ocupa a largura total para centralização */
+        justify-content: center; /* Centraliza logo e ícone de usuário */
+        gap: 0.75rem; /* Espaçamento entre user.svg, logo e version */
+        order: 1; /* Define a ordem para aparecer primeiro */
+    }
+    .navbar-logo {
+        height: 50px; /* Ajusta para mobile */
+        /* margin-top: -5px; Removido para alinhar melhor */
+    }
+    .site-version {
+        font-size: 0.75rem;
+        /* margin-top: -10px; Removido para alinhar melhor */
+    }
+
+    .navbar-right {
+        width: 100%; /* Ocupa a largura total */
+        justify-content: center; /* Centraliza os botões e o sino */
+        gap: 0.5rem;
+        order: 2; /* Define a ordem para aparecer depois do left */
+        margin-top: 5px; /* Espaço entre a linha de cima e a linha de baixo */
+    }
+    .navbar-button {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+    }
+    .navbar-icon-button img {
+        height: 25px; /* Ajusta tamanho dos ícones em mobile */
+        width: 25px;
+    }
+}

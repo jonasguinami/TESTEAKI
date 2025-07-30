@@ -1,0 +1,546 @@
+/* Import da fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Import da fonte Bebas Neue para o TAXA ZERO */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+:root {
+    --primary-color: #6a0dad; /* Um roxo vibrante */
+    --secondary-color: #ff6f61; /* Um coral vibrante */
+    --text-color: #333;
+    --background-light: #f5f5f5;
+    --background-dark: #e0e0e0;
+    --border-radius-large: 40px;
+    --border-radius-medium: 40px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --button-gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Para rolagem suave */
+}
+
+body {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color);
+    padding: 20px;
+}
+
+/* Seção de destaque (hero) */
+.hero {
+    background: rgba(255, 255, 255, 0.15); /* Fundo semi-transparente para o hero */
+    backdrop-filter: blur(10px); /* Efeito de blur no fundo */
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-large);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex; /* Para alinhar conteúdo e imagem */
+    justify-content: space-around; /* Distribui o espaço */
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+}
+
+.hero-content {
+    flex-basis: 60%; /* Ocupa mais espaço para o texto */
+    min-width: 280px; /* Garante um tamanho mínimo */
+}
+
+.hero-title {
+    font-family: 'Bebas Neue', sans-serif; /* Nova fonte para o título */
+    font-size: 10em; /* Aumentado para ser grande por padrão */
+    font-weight: 700;
+    letter-spacing: 3px; /* Aumentado o espaçamento */
+    margin-bottom: 5px; /* Reduzido o espaçamento */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Sombra mais forte */
+    color: white; /* Cor amarela vibrante para destaque */
+}
+
+.hero-subtitle {
+    font-size: 1.8em;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.hero-image-placeholder {
+    flex-basis: 30%; /* Espaço para a imagem */
+    min-width: 150px;
+    height: 150px; /* Altura fixa para o placeholder */
+    background-color: rgba(255, 255, 255, 0.3); /* Cor de fundo para o espaço */
+    border-radius: var(--border-radius-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-style: italic;
+    font-size: 0.9em;
+    text-align: center;
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    overflow: hidden; /* Garante que a imagem não transborde */
+}
+
+.hero-image-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+}
+
+
+/* Container principal dos Planos */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Sombra mais forte para destacar */
+    margin-bottom: 40px;
+    border: 1px solid var(--background-dark); /* Borda sutil */
+}
+
+.section-title {
+    font-size: 2.2em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--background-dark);
+}
+
+/* Abas de navegação (agora botões de scroll) */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tab-button {
+    background-color: var(--background-dark);
+    color: var(--text-color);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: var(--border-radius-large);
+    transition: all 0.3s ease;
+    outline: none;
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background-color: #c0c0c0;
+}
+
+.tab-button.active {
+    background: var(--button-gradient);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.plan-section {
+    margin-bottom: 40px; /* Espaçamento entre cada seção de plano */
+    padding-top: 20px; /* Para que o scroll não corte o título */
+}
+
+/* Conteúdo dos planos (card) - Mais arredondado e com efeitos */
+.plan-card {
+    background-color: var(--background-light);
+    border: 1px solid var(--background-dark);
+    border-radius: var(--border-radius-large); /* Agora MUITO mais arredondado */
+    padding: 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 450px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para hover/active */
+    cursor: pointer; /* Indica que é clicável */
+}
+
+.plan-card:hover {
+    transform: translateY(-5px) scale(1.01); /* Leve levantada e crescimento no hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Sombra mais intensa no hover */
+}
+
+.plan-card:active {
+    transform: translateY(-2px) scale(1.005); /* Pequeno "empurrão" para baixo no clique */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra ligeiramente reduzida no clique */
+}
+
+
+.plan-card h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+/* Cores específicas para os títulos dos cards */
+.start-card h3 { color: #5B2C6F; }
+.essencial-card h3 { color: #8E44AD; }
+.premium-card h3 { color: var(--primary-color); }
+
+
+/* Estilo do bloco de preço - Corrigido o alinhamento */
+.plan-price-block {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: var(--border-radius-medium);
+    margin-bottom: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center; /* AGORA ISSO VAI CENTRALIZAR TUDO VERTICALMENTE */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px 10px; /* Espaço entre os elementos */
+    line-height: 1.2; /* Ajusta a altura da linha para evitar cortes */
+}
+
+.plan-price-block .price-option {
+    display: flex;
+    align-items: center; /* Centraliza o "R$" e o valor */
+    gap: 5px; /* Espaço entre R$ e valor */
+}
+
+.plan-price-block .price-prefix {
+    font-size: 1.2em; /* Cifrão menor */
+    font-weight: 500;
+    opacity: 0.8; /* Suaviza um pouco o cifrão */
+}
+
+.plan-price-block .price-value {
+    font-size: 5em; /* Valor numérico maior */
+    font-weight: 700;
+    line-height: 1; /* Para melhor alinhamento */
+}
+
+.plan-price-block .price-period {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.plan-price-block .or-separator {
+    font-size: 1.2em; /* "ou" um pouco maior */
+    font-weight: 600;
+    margin: 0 15px; /* Mais espaço para o "ou" */
+}
+
+.plan-description {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.plan-card h4 {
+    font-size: 1.4em;
+    color: var(--primary-color);
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed var(--background-dark);
+    padding-bottom: 5px;
+    font-weight: 600;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Permite que a lista cresça e empurre o botão para baixo */
+}
+
+.plan-card ul li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--background-dark);
+    color: #666;
+    display: flex;
+    align-items: flex-start;
+}
+
+.plan-card ul li:last-child {
+    border-bottom: none;
+}
+
+.plan-card ul li::before {
+    content: '✓';
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.plan-note {
+    font-style: italic;
+    color: #777;
+    margin-top: 20px;
+    text-align: right;
+    font-size: 0.95em;
+}
+
+/* Botão Selecionar Plano */
+.select-plan-button {
+    background: var(--button-gradient);
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: var(--border-radius-large);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%; /* Ocupa a largura total do card */
+    margin-top: 20px; /* Espaço acima do botão */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.select-plan-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Tabela Comparativa */
+.plan-table-container {
+    overflow-x: auto;
+    /* Remover border-radius se ele estiver aqui, ou garantir que não haja um */
+    border-radius: 0; /* Garante que não haja arredondamento no container da tabela */
+}
+
+.plan-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 0; /* Remove completamente o arredondamento da tabela */
+    overflow: hidden; /* AINDA É BOM MANTER ISSO para bordas internas se comportarem bem */
+}
+
+.plan-table-container th,
+.plan-table-container td {
+    border: 1px solid var(--background-dark); /* Mantém as linhas divisórias */
+    padding: 12px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.plan-table-container th {
+    background: linear-gradient(90deg, var(--primary-color), rgba(106, 13, 173, 0.8));
+    color: #fff;
+    font-weight: 600;
+}
+
+.plan-table-container tr:nth-child(even) {
+    background-color: var(--background-light);
+}
+
+.plan-table-container td:first-child {
+    font-weight: 500;
+    color: var(--primary-color);
+    text-align: left; /* Mantém a primeira coluna alinhada à esquerda */
+}
+
+/* Estilos para os ícones de Sim/Não na tabela */
+.feature-yes, .feature-no {
+    display: inline-flex; /* Usa flex para alinhar o ícone e o texto */
+    align-items: center;
+    gap: 5px; /* Espaço entre o ícone e o texto */
+    font-weight: 600;
+    color: var(--text-color); /* Cor padrão do texto */
+}
+
+.feature-yes::before {
+    content: '✓';
+    color: #4CAF50; /* Verde para 'Sim' */
+    font-size: 1.2em; /* Tamanho do ícone */
+    font-weight: bold;
+}
+
+.feature-no::before {
+    content: '✗';
+    color: #f44336; /* Vermelho para 'Não' */
+    font-size: 1.2em; /* Tamanho do ícone */
+    font-weight: bold;
+}
+
+/* Botão de Scroll para o Topo */
+#scrollToTopBtn {
+    display: none; /* Escondido por padrão */
+    position: fixed; /* Fixo na tela */
+    bottom: 30px; /* Distância do fundo */
+    right: 30px; /* Distância da direita */
+    z-index: 99; /* Acima de outros elementos */
+    border: none;
+    outline: none;
+    background: var(--button-gradient); /* Degradê do botão */
+    color: white;
+    cursor: pointer;
+    padding: 15px 20px; /* Ajustado para ser mais redondo */
+    border-radius: 50%; /* Redondo */
+    font-size: 24px; /* Tamanho da seta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    width: 60px; /* Garante tamanho fixo */
+    height: 60px; /* Garante tamanho fixo */
+    display: flex; /* Para centralizar a seta */
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Começa invisível para a transição */
+}
+
+#scrollToTopBtn.show {
+    opacity: 1; /* Torna visível */
+    display: flex; /* Mostra o botão flex */
+}
+
+
+#scrollToTopBtn:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); /* Inverte o degradê */
+    transform: translateY(-2px);
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .hero {
+        padding: 40px 15px;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        flex-direction: column; /* Empilha conteúdo e imagem em telas menores */
+    }
+    
+
+    .hero-subtitle {
+        font-size: 1.6em;
+    }
+
+    .hero-content {
+        flex-basis: 100%; /* Ocupa toda a largura */
+    }
+
+    .hero-image-placeholder {
+        margin-top: 20px; /* Espaçamento entre texto e imagem */
+        width: 100%;
+        max-width: 200px; /* Limita a largura do placeholder */
+        height: 120px;
+    }
+
+    .tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .tab-button {
+        width: 90%;
+        max-width: 300px;
+        font-size: 1em;
+        padding: 10px 20px;
+        border-radius: 25px;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Ajusta sombra em mobile */
+    }
+
+    .section-title {
+        font-size: 1.8em;
+    }
+
+    .plan-card {
+        padding: 20px;
+        border-radius: 10px;
+        min-height: unset; /* Remove altura mínima em mobile */
+        border-radius: var(--border-radius-medium); /* Ajusta o arredondamento em mobile */
+    }
+
+    .plan-card h3 {
+        font-size: 1.5em;
+    }
+
+    .plan-price-block .price-prefix {
+        font-size: 1em; /* Cifrão menor em mobile também */
+    }
+
+    .plan-price-block .price-value {
+        font-size: 4em; /* Ajusta tamanho do preço em mobile */
+    }
+
+    .plan-price-block .price-period {
+        font-size: 1em;
+    }
+    .plan-price-block .or-separator {
+        font-size: 1em;
+        margin: 0 10px;
+    }
+
+    .plan-card h4 {
+        font-size: 1.2em;
+    }
+
+    .plan-table-container {
+        border-radius: 0; /* Garante remoção também em mobile */
+    }
+
+    .plan-table-container table {
+        border-radius: 0; /* Garante remoção também em mobile */
+    }
+
+    .plan-table-container th,
+    .plan-table-container td {
+        font-size: 0.7em; /* Reduz um pouco o texto da tabela em mobile */
+        padding: 8px;
+    }
+    .feature-yes, .feature-no {
+        font-size: 0.9em; /* Ajusta o tamanho do texto do Sim/Não */
+    }
+    .feature-yes::before, .feature-no::before {
+        font-size: 1em; /* Ajusta o tamanho dos ícones em mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 5em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4em;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+    }
+}

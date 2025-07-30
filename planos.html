@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos PedeAki</title>
+    <link rel="stylesheet" href="styleplanos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">TAXA ZERO</h1>
+            <p class="hero-subtitle">por pedido ou balanço</p>
+        </div>
+        <div class="hero-image-placeholder">
+            </div>
+    </header>
+
+    <main class="container">
+        <h2 class="section-title">Planos PedeAki</h2>
+
+        <div class="tabs">
+            <button class="tab-button active" data-scroll-to="plano-start-section">Plano Start</button>
+            <button class="tab-button" data-scroll-to="plano-essencial-section">Plano Essencial</button>
+            <button class="tab-button" data-scroll-to="plano-premium-section">Plano Premium</button>
+            <button class="tab-button" data-scroll-to="tabela-comparativa-section">Tabela Comparativa</button>
+        </div>
+
+        <section id="plano-start-section" class="plan-section">
+            <div class="plan-card start-card">
+                <h3>Plano Start</h3>
+                <div class="plan-price-block">
+                    <span class="price-value">Grátis</span>
+                    <span class="price-period">por 7 dias</span>
+                </div>
+                <p class="plan-description">Período de teste gratuito com as funcionalidades básicas para experimentar o sistema.</p>
+                <h4>Inclui:</h4>
+                <ul>
+                    <li>Cardápio Digital PedeAki</li>
+                    <li>Recebimento de pedidos via WhatsApp</li>
+                    <li>Painel de pedidos simples</li>
+                    <li>Personalização com logo e cores</li>
+                    <li>Até 20 produtos cadastráveis</li>
+                    <li>Suporte via WhatsApp ou e-mail (horário comercial)</li>
+                </ul>
+                <h4>Limitações:</h4>
+                <ul>
+                    <li>Sem PDV, sem impressão automática, sem chatbot, funcionalidades limitadas.</li>
+                </ul>
+                <p class="plan-note">Válido por 7 dias.</p>
+                <button class="select-plan-button" data-plan="Start" onclick="window.location.href='register.html'">Selecionar Plano Start</button>
+            </div>
+        </section>
+
+        <section id="plano-essencial-section" class="plan-section">
+            <div class="plan-card essencial-card">
+                <h3>Plano Essencial</h3>
+                <div class="plan-price-block">
+                    <div class="price-option">
+                        <span class="price-prefix">R$</span><span class="price-value">50</span>
+                        <span class="price-period">/mês</span>
+                    </div>
+                    <span class="or-separator">ou</span>
+                    <div class="price-option">
+                        <span class="price-prefix">R$</span><span class="price-value">80</span>
+                        <span class="price-period">/3 meses</span>
+                    </div>
+                </div>
+                <p class="plan-description">Plano ideal para negócios locais que querem praticidade e profissionalismo por um valor acessível.</p>
+                <h4>Inclui:</h4>
+                <ul>
+                    <li>Tudo do plano Start</li>
+                    <li>Painel de controle completo</li>
+                    <li>Impressão automática na cozinha</li>
+                    <li>QR Code para mesas</li>
+                    <li>Cadastro de clientes</li>
+                    <li>Produtos ilimitados</li>
+                    <li>Suporte todos os dias (das 9h às 22h)</li>
+                </ul>
+                <h4>Destaque:</h4>
+                <p>Pagamento trimestral com desconto (R$ 80 por 3 meses = R$ 26,66/mês)</p>
+                <span class="plan-note">Promoção SOMENTE para primeira aquisição.</span>
+                <button class="select-plan-button" data-plan="Essencial" onclick="window.location.href='register.html'">Selecionar Plano Essencial</button>
+            </div>
+        </section>
+
+        <section id="plano-premium-section" class="plan-section">
+            <div class="plan-card premium-card">
+                <h3>Plano Premium</h3>
+                <div class="plan-price-block">
+                    <span class="price-prefix">R$</span><span class="price-value">150</span>
+                    <span class="price-period">/mês</span>
+                </div>
+                <p class="plan-description">Plano completo para negócios que desejam automação, eficiência e controle total da operação.</p>
+                <h4>Inclui:</h4>
+                <ul>
+                    <li>Tudo do plano Essencial</li>
+                    <li>Chatbot com IA para WhatsApp (responde, coleta pedidos e interage automaticamente)</li>
+                    <li>Comanda digital para garçons</li>
+                    <li>Cadastro e gestão de entregadores</li>
+                    <li>Sistema de fidelidade e cashback automatizados</li>
+                    <li>Agendamento de pedidos</li>
+                    <li>Frente de Caixa (PDV Pro)</li>
+                    <li>Display de pedidos para cozinha (KDS)</li>
+                    <li>Emissão automática de nota fiscal</li>
+                    <li>Suporte completo (das 8h às 23h, todos os dias)</li>
+                </ul>
+                <button class="select-plan-button" data-plan="Premium" onclick="window.location.href='register.html'">Selecionar Plano Premium</button>
+            </div>
+        </section>
+
+        <section id="tabela-comparativa-section" class="plan-section">
+            <div class="plan-table-container">
+                <h3>Tabela Comparativa de Planos</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Funcionalidade</th>
+                            <th>Start</th>
+                            <th>Essencial</th>
+                            <th>Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr><td>Cardápio Digital Personalizado</td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Recebimento via WhatsApp</td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Painel de Pedidos Completo</td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>PDV com Impressora</td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>QR Code para Mesas</td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Cadastro de Clientes</td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Chatbot com IA</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Comanda Digital para Garçom</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Cadastro de Entregadores</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Fidelização e Cashback Automático</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Agendamento de Pedidos</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Frente de Caixa</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Display de Cozinha (KDS)</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Emissão de Nota Fiscal</td><td><span class="feature-no">Não</span></td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                        <tr><td>Suporte Diário Estendido</td><td><span class="feature-no">Não</span></td><td><span class="feature-yes">Sim</span></td><td><span class="feature-yes">Sim</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+<button id="scrollToTopBtn" title="Voltar ao Topo"> <img src="upplan.svg" alt="Voltar ao Topo"> </button>
+
+    <script src="scriptplanos.js"></script>
+</body>
+</html>

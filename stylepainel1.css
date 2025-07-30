@@ -1,0 +1,1614 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    background: #f4f4f4;
+    padding-top: 90px; /* Espaço para navbar fixa */
+    display: flex; /* O body é um container flex */
+    flex-wrap: wrap; /* Permite que os itens do body quebrem linha */
+    justify-content: center; /* Centraliza os itens do body (incluindo painéis) */
+    align-items: flex-start; /* Alinha itens ao topo para que o conteúdo flua */
+    gap: 20px; /* Espaço entre os painéis */
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 40px; /* Mantido para garantir rolagem suficiente se o conteúdo for longo */
+}
+
+/* Base variables */
+:root {
+    --primary-color: #6a0dad; /* Um roxo vibrante */
+    --secondary-color: #ff6f61; /* Um coral vibrante */
+    --text-color-dark: #333; /* Cor principal para textos escuros */
+    --text-color-light: #fff; /* Cor principal para textos claros */
+    --background-light: #f5f5f5; /* Fundo leve para cards/painéis */
+    --background-mid: #e0e0e0; /* Fundo médio */
+    --background-white: #fff; /* Fundo branco puro */
+
+    --border-radius-large: 30px;
+    --border-radius-medium: 15px;
+    --border-radius-small: 8px;
+
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.15); 
+    --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+    --gradient-purple-orange: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    
+    --navbar-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); 
+}
+
+/* Título geral para conteúdo principal (fora da navbar) */
+h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 700;
+    width: 100%; 
+}
+
+/* ========================================================== */
+/* ===== ESTILOS DA NAVBAR (MANTIDOS INTACTOS) ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    background: var(--gradient-purple-orange);
+    background-size: 400% 400%;
+    animation: navbarGradientFlow 15s ease infinite;
+    box-shadow: var(--navbar-shadow);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes navbarGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.navbar-logo {
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.site-version {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background-light);
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.navbar-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navbar-icon-button img {
+    height: 30px;
+    width: 30px;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-icon-button:hover img {
+    transform: scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+
+.navbar-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background-light);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    outline: none;
+    border-color: var(--background-light);
+}
+
+.navbar-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.1s;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px; 
+    }
+    .navbar {
+        height: 120px;
+        padding: 0.5rem 1rem;
+        border-radius: 0 0 25px 25px;
+        flex-wrap: wrap;
+    }
+    .navbar-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .navbar-left {
+        width: 100%;
+        justify-content: center;
+        gap: 0.75rem;
+        order: 1;
+    }
+    .navbar-logo {
+        height: 50px;
+    }
+    .site-version {
+        font-size: 0.75rem;
+    }
+    .navbar-right {
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+        order: 2;
+        margin-top: 5px;
+    }
+    .navbar-button {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+    }
+    .navbar-icon-button img {
+        height: 25px;
+        width: 25px;
+        filter: none;
+    }
+}
+
+/* ========================================================== */
+/* ===== PAINÉIS PRINCIPAIS (.panel, .menu) - FINAL CORREÇÃO E LAYOUT DE FLUXO ===== */
+
+.panel, .menu {
+    background: var(--background-white);
+    padding: 32px 40px;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-light);
+    flex: 0 0 calc(50% - 10px); /* Largura para duas colunas com gap */
+    max-width: calc(50% - 10px); 
+    min-width: 300px; /* Evita que painéis fiquem muito pequenos */
+    font-size: clamp(16px, 1.5vw, 20px);
+    border: 1px solid var(--background-mid);
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Espaçamento vertical entre os painéis */
+    
+    position: static; 
+    top: auto;
+    left: auto;
+    width: auto; 
+    transform: none; 
+    height: auto; 
+    overflow-y: visible; 
+    align-self: auto; 
+}
+
+/* Remover hover/active específicos se ainda existirem para .panel e .menu */
+.panel:hover, .menu:hover {
+    transform: none;
+    box-shadow: var(--shadow-light);
+}
+.panel:active, .menu:active {
+    transform: none;
+    box-shadow: var(--shadow-light);
+}
+
+
+/* Header do Painel */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 36px;
+    padding: 24px;
+    background: var(--background-light);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    user-select: none;
+    border: 1px solid var(--background-mid);
+}
+
+.panel-header:hover {
+    background-color: var(--background-light);
+    transform: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* RESPONSIVO: Tablet e abaixo */
+@media (max-width: 1023px) {
+    body {
+        gap: 15px;
+    }
+    .panel, .menu {
+        flex: 1 1 100%; /* Ocupa largura total em tablet */
+        max-width: 100%;
+        padding: 28px 24px;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .panel-header {
+        padding: 20px;
+        margin-bottom: 28px;
+    }
+}
+
+/* Responsivo: Mobile */
+@media (max-width: 480px) {
+    body {
+        padding: 140px 10px 20px 10px;
+        gap: 10px;
+    }
+    .panel, .menu {
+        padding: 24px;
+        font-size: 16px;
+        border-radius: var(--border-radius-medium);
+        margin-bottom: 10px;
+    }
+    .panel-header {
+        padding: 16px;
+        margin-bottom: 24px;
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+    }
+    .panel-title {
+        align-items: center;
+        max-width: 100%;
+    }
+    .panel-title h2,
+    .panel-subtitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .panel-title h2 {
+        font-size: 26px;
+    }
+    .panel-subtitle {
+        font-size: 15px;
+    }
+}
+
+/*======BOTÃO VISUALIZAR CARDAPIO (.btn-view) - ROXO DEGRADÊ====== */
+.btn-view {
+    order: 0;
+    padding: 18px 36px;
+    font-size: 1.15rem;
+    align-self: center;
+
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+/* Efeito de brilho */
+.btn-view::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 150%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: left 0.4s ease;
+}
+
+.btn-view:hover::after {
+    left: 125%;
+}
+
+.btn-view:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.btn-view:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== RESPONSIVIDADE DO BOTÃO EM MOBILE ========== */
+@media (max-width: 480px) {
+    .btn-view {
+        font-size: 0.95rem;
+        padding: 12px 24px;
+        max-width: 100%;
+        width: auto;
+        display: block;
+        margin: 0 auto 12px auto;
+    }
+}
+
+/* ========== FORMULÁRIOS E BOTÕES GERAIS ========== */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* Label de texto normal (como "Imagem", "Título", "Descrição") */
+.input-label-text { /* Nova classe para o label "Imagem" */
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-color-dark);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.3px solid var(--background-mid);
+    border-radius: var(--border-radius-medium);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--background-white);
+    color: var(--text-color-dark);
+}
+
+/* Específico para textarea */
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+    line-height: 1.4;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px 2px rgba(106, 13, 173, 0.2);
+}
+
+/* ========== BOTÕES ADD E SAVE (ROXOS) ========== */
+.btn-add,
+.btn-save {
+    width: 100%;
+    padding: 16px 0;
+    color: var(--text-color-light);
+    border: none;
+    border-radius: var(--border-radius-large);
+    font-size: 1.15rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    user-select: none;
+    background: var(--gradient-purple-orange);
+}
+
+.btn-add:hover,
+.btn-save:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transform: translateY(-2px);
+}
+
+.btn-add:active,
+.btn-save:active {
+    transform: scale(0.95);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 600px) {
+    .panel-header {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+        padding: 20px 16px;
+    }
+    .btn-view {
+        align-self: center;
+        width: 100%;
+        max-width: 200px;
+    }
+    .panel-title {
+        align-items: center;
+        max-width: 100%;
+    }
+    .panel-title h2,
+    .panel-subtitle {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .panel-title h2 {
+        font-size: 26px;
+    }
+    .panel-subtitle {
+        font-size: 15px;
+    }
+}
+
+/* ========== ABAS DE CATEGORIAS ========== */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.tab-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: 1px solid var(--background-mid);
+    background: var(--background-light);
+    border-radius: var(--border-radius-large);
+    cursor: pointer;
+    gap: 6px;
+    color: var(--text-color-dark);
+    font-weight: 500;
+    font-size: 0.9em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+}
+.tab-btn:hover {
+    background: var(--background-mid);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    transform: translateY(-1px);
+}
+.tab-btn.active {
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(106, 13, 173, 0.35);
+}
+
+/* ========== BOTÃO DE MENU DE CATEGORIA (ícone 3 pontinhos) ========== */
+.category-menu-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7; /* Mantido para este SVG */
+    transition: opacity 0.2s ease, transform 0.15s ease; /* Transição de opacidade mantida */
+}
+
+.category-menu-btn:hover {
+    opacity: 1; /* Mantido para este SVG */
+    transform: scale(1.1);
+}
+
+.category-menu-btn img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(0); /* Fica preto por padrão */
+}
+
+.tab-btn.active .category-menu-btn img {
+    filter: brightness(0) saturate(100%) invert(1); /* Fica branco quando a aba está ativa */
+}
+
+
+/* Context menu (Editar/Excluir Categoria) */
+.category-context-menu {
+    position: absolute;
+    background: var(--background-white);
+    border: 1px solid var(--background-mid);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    z-index: 1000;
+    width: 180px;
+    padding: 6px 0;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeInMenu 0.2s ease-out;
+}
+
+.context-option {
+    padding: 12px 18px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+    font-size: 0.95rem;
+    color: var(--text-color-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.context-option:hover {
+    background-color: rgba(106, 13, 173, 0.1);
+    color: var(--primary-color);
+    padding-left: 22px;
+}
+
+.context-option.edit {
+    color: #1976d2;
+}
+
+.context-option.delete {
+    color: #d32f2f;
+}
+
+/* ========== ITENS DO CARDÁPIO (.menu-item) ========== */
+.menu-item {
+    display: flex;
+    align-items: center; /* Alinha verticalmente imagem e detalhes */
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--background-white);
+    border: 1px solid var(--background-mid);
+    border-radius: var(--border-radius-medium);
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.menu-item img {
+    width: 100px; /* IMAGEM MAIOR */
+    height: 100px; /* IMAGEM MAIOR */
+    object-fit: cover;
+    border-radius: var(--border-radius-small);
+    flex-shrink: 0;
+    border: 1px solid var(--background-mid);
+}
+
+.menu-item-details {
+    flex: 1; /* Permite que os detalhes ocupem o espaço restante */
+    min-width: 0; /* Permite que o conteúdo encolha se necessário */
+    padding-right: 10px;
+}
+
+.menu-item-details h3 {
+    margin: 0 0 5px;
+    font-size: 1.15em;
+    color: var(--text-color-dark);
+    font-weight: 600;
+}
+
+.menu-item-details p {
+    margin: 0;
+    font-size: 0.95em;
+    color: #666;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: row; /* Botões sempre em linha */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* Botões de Ação do Item de Menu (Editar, Remover, Toggle) - CORES ESPECÍFICAS */
+.menu-buttons button {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-color-light);
+    border: none;
+    border-radius: var(--border-radius-large);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+/* Estilo individual dos botões (retornando cores originais) */
+.btn-edit {
+    background-color: #9C27B0; /* Roxo claro para EDITAR */
+}
+.btn-edit:hover {
+    background-color: #6A1B9A; /* Roxo mais escuro no hover */
+    transform: scale(1.05);
+}
+
+.btn-remove {
+    background-color: #f44336; /* Vermelho para REMOVER */
+}
+.btn-remove:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+}
+
+.btn-toggle {
+    background-color: #ff9800; /* Laranja para OCULTAR/TOGGLE */
+}
+.btn-toggle:hover {
+    background-color: #fb8c00;
+    transform: scale(1.05);
+}
+
+.menu-buttons button:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Responsivo mobile para ITENS DO CARDÁPIO */
+@media (max-width: 480px) {
+    .menu-item {
+        flex-direction: row; /* IMPORANTE: Volta para linha em mobile */
+        align-items: center; /* Centraliza verticalmente na linha */
+        flex-wrap: wrap; /* Permite quebrar se o espaço for muito pequeno */
+        gap: 10px;
+        padding: 12px;
+    }
+    .menu-item img {
+        width: 80px;
+        height: 80px;
+        order: 0; /* Garante que a imagem venha primeiro */
+    }
+    .menu-item-details {
+        flex: 1; /* Ocupa o espaço restante */
+        min-width: 100px; /* Garante um tamanho mínimo para os detalhes */
+        padding-left: 0; /* Remove padding extra */
+        order: 1; /* Coloca os detalhes depois da imagem */
+    }
+    .menu-item-details h3 {
+        font-size: 1em;
+    }
+    .menu-item-details p {
+        font-size: 0.85em;
+    }
+    .menu-buttons {
+        width: 100%; /* Ocupa a largura total para os botões */
+        justify-content: space-around; /* Distribui os botões */
+        margin-top: 10px;
+        order: 2; /* Botões por último na linha */
+        gap: 6px;
+    }
+    .menu-buttons button {
+        flex: 1 1 auto;
+        min-width: unset;
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+
+/* ========== MODAL GERAL (AJUSTADO) ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+/* CONTEÚDO DO MODAL */
+.modal-content {
+    background-color: var(--background-white);
+    padding: 32px 26px;
+    border-radius: var(--border-radius-medium);
+    width: 100%;
+    max-width: 480px;
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+    box-sizing: border-box;
+    animation: modalFadeIn 0.35s ease;
+    transform-origin: center;
+}
+
+.modal-content h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+.close-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+/* IMAGEM no modal */
+.image-preview {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: var(--border-radius-small);
+    margin-top: 8px;
+    border: 1px solid var(--background-mid);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* INPUTS PADRÃO DO MODAL */
+.modal-content input[type="text"],
+.modal-content input[type="number"],
+.modal-content textarea,
+.modal-content select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.6px solid var(--background-mid);
+    border-radius: var(--border-radius-small);
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--background-white);
+    color: var(--text-color-dark);
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="number"]:focus,
+.modal-content textarea:focus,
+.modal-content select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(106, 13, 173, 0.2);
+}
+
+.modal-content textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* BOTÃO PADRÃO DO MODAL (APENAS UM BOTÃO DE AÇÃO) - ROXO DEGRADÊ */
+.modal-content button.btn-action { /* Adicione uma classe para botões de ação */
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    font-size: 17px;
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius-medium);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-content button.btn-action:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content button.btn-action:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Campo de upload de imagem para o modal de EDIÇÃO */
+.modal-content .upload-container { /* Adicione esta regra para estilizar o upload dentro do modal */
+    position: relative;
+    width: 100%;
+    height: 52px; /* Altura do botão */
+    margin-bottom: 16px;
+    overflow: hidden;
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra mais leve */
+    transition: all 0.2s ease-in-out;
+    border: 1px solid var(--background-mid); /* Borda para contraste */
+}
+
+/* Label que serve como botão visual dentro do modal de EDIÇÃO */
+.modal-content .upload-label { /* Mantenha essa classe para o modal de edição */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px; /* Largura específica para o label "Selecionar" no modal */
+    height: 100%;
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    border-top-right-radius: 0; /* Ajuste para não ter cantos arredondados na direita */
+    border-bottom-right-radius: 0;
+    border-radius: var(--border-radius-medium); /* Aplica em geral, mas sobrescreve com 0 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+    z-index: 2; /* Fica acima do input nativo */
+    user-select: none;
+    pointer-events: none; /* Deixa o clique passar para o input */
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15);
+}
+/* Input de arquivo dentro do modal de EDIÇÃO */
+.modal-content input[type="file"] { /* Mantenha essa regra para o modal de edição */
+    font-size: 16px;
+    color: var(--text-color-dark);
+    padding: 14px 18px;
+    padding-left: 140px; /* Espaço para o label personalizado */
+    border: none; /* Remove a borda padrão do input */
+    background-color: transparent; /* Transparente para ver o background do container */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* Torna o input invisível */
+    z-index: 3; /* Acima do label para capturar o clique */
+}
+.modal-content input[type="file"]::file-selector-button {
+    opacity: 0;
+    width: 0;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal-content .upload-container:hover .upload-label {
+    transform: scale(1); /* Não escalar o label dentro do modal */
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+
+/* ========= RESPONSIVO DO MODAL ========= */
+@media screen and (max-width: 480px) {
+    .modal-content {
+        max-width: 90vw;
+        padding: 22px 18px;
+        border-radius: var(--border-radius-medium);
+    }
+    .modal-content h2 {
+        font-size: 20px;
+    }
+    .modal-content button {
+        font-size: 16px;
+        padding: 10px;
+    }
+    .close-btn {
+        top: 12px;
+        right: 12px;
+    }
+    /* Adaptação para o upload no modal (se necessário) */
+    .modal-content .upload-label {
+        width: 100px;
+        font-size: 14px;
+    }
+    .modal-content input[type="file"] {
+        padding-left: 110px;
+        font-size: 15px;
+    }
+    .modal-content .upload-container {
+        height: 48px;
+    }
+}
+
+
+/* ========== CAMPO DE UPLOAD DE IMAGEM PRINCIPAL (NOVA IMPLEMENTAÇÃO) ========== */
+/* Contêiner que alinha o botão e a pré-visualização lado a lado */
+.upload-wrapper {
+    display: flex; /* <-- USA FLEXBOX! */
+    align-items: center; /* Alinha verticalmente os itens no centro */
+    gap: 15px; /* Espaçamento entre o botão e a imagem */
+    width: 100%;
+    max-width: 460px; /* Largura máxima total */
+    min-height: 52px; /* Garante altura mínima para o botão */
+    margin-bottom: 1rem; /* Espaço abaixo deste grupo de elementos */
+}
+
+/* O LABEL que se transforma no BOTÃO "Selecionar" visual (Roxo/Branco) */
+.custom-file-btn {
+    display: flex; /* Para centralizar o texto dentro do botão */
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Impede que o botão encolha */
+
+    /* Dimensões do seu botão */
+    width: 140px; /* Largura fixa para o botão */
+    height: 52px; /* Altura fixa para o botão */
+    padding: 0 1rem; /* Ajuste o padding conforme necessário para o texto */
+
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light); /* <-- TEXTO "Selecionar" BRANCO! */
+    border-radius: var(--border-radius-medium);
+    font-weight: 600;
+    font-size: 1rem; /* Tamanho da fonte do "Selecionar" */
+    cursor: pointer; /* Feedback visual de clicável */
+    user-select: none; /* Impede seleção de texto */
+
+    /* Estilos de sombra e transição para o botão em si */
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Efeito de hover e active para o botão visual */
+.custom-file-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+.custom-file-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* O INPUT DE ARQUIVO NATIVO (totalmente escondido) */
+/* Usamos o ID para garantir que só ele seja afetado */
+#addItemImage {
+    /* Posicionamento absoluto para tirar ele do fluxo normal, mas fora da tela */
+    position: absolute; 
+    left: -9999px; /* Mova ele para fora da tela */
+    opacity: 0; /* Torna ele invisível por segurança */
+    width: 1px; /* Minúsculo */
+    height: 1px; /* Minúsculo */
+    overflow: hidden; /* Garante que nada vaze */
+    pointer-events: none; /* Impede qualquer interação direta com o mouse */
+    z-index: -1; /* Coloca ele atrás de tudo */
+}
+
+/* Isso esconde o botão "Escolher arquivo" que alguns navegadores teimosos mostram */
+#addItemImage::file-selector-button {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Estilo para a pré-visualização da imagem (ao lado do botão) */
+.image-preview-thumbnail {
+    display: none; /* Começa escondida, JS vai mostrar */
+    width: 80px; /* Tamanho da sua pré-visualização */
+    height: 80px; /* Tamanho da sua pré-visualização */
+    object-fit: cover; /* Garante que a imagem preencha o espaço */
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--background-mid);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Impede que a imagem encolha */
+}
+
+/* Garante que a imagem apareça quando a classe hidden for removida */
+.image-preview-thumbnail:not(.hidden) {
+    display: block;
+}
+
+
+/* ========== ANIMAÇÕES ========== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInMenu {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+
+/* ===== CONTEXT MENU DE CATEGORIA (AJUSTADO) ===== */
+.context-menu {
+    position: absolute;
+    background-color: var(--background-white);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--shadow-light);
+    overflow: hidden;
+    z-index: 9999;
+    min-width: 160px;
+    font-family: 'Poppins', sans-serif;
+    animation: fadeInMenu 0.15s ease-out;
+}
+
+.menu-item {
+    position: relative;
+    padding: 10px 16px;
+    font-size: 14px;
+    color: var(--text-color-dark);
+    cursor: pointer;
+    transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: rgba(106, 13, 173, 0.1);
+    color: var(--primary-color);
+}
+
+.menu-item.drag-over {
+    border: 2px dashed var(--primary-color);
+    background-color: rgba(106, 13, 173, 0.05);
+}
+.menu-item.dragging {
+    opacity: 0.5;
+}
+
+
+/* ========== BOTÃO EXTRA (EX: NO CANTO DE UM ITEM) ========== */
+.btn-extra-icon {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 2;
+    transition: transform 0.2s ease;
+}
+
+.btn-extra-icon img {
+    width: 23px;
+    height: 23px;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn-extra-icon:hover img {
+    transform: scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+/* Responsivo para mobile */
+@media (max-width: 600px) {
+    .btn-extra-icon {
+        padding: 10px;
+    }
+    .btn-extra-icon img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* ========== MODAL DE ADICIONAIS (AJUSTADO) ========== */
+.adicionais-modal {
+    background: var(--background-white);
+    padding: 30px 20px 20px;
+    border-radius: var(--border-radius-medium);
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-strong);
+    text-align: left;
+    animation: modalFadeIn 0.3s ease;
+    position: relative;
+    z-index: 9999;
+}
+
+/* ========== BOTÃO DE FECHAR MODAL (xicon.svg) ========== */
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.modal-close img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+.modal-close:hover img {
+    transform: rotate(90deg) scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+/* ========== FORMULÁRIO DE ADICIONAR (em cima) ========== */
+.adicional-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.adicional-form input {
+    padding: 10px;
+    border: 1px solid var(--background-mid);
+    border-radius: var(--border-radius-medium);
+    font-size: 16px;
+    outline: none;
+    color: var(--text-color-dark);
+}
+
+.adicional-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(106, 13, 173, 0.2);
+}
+
+.adicional-form .btn {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: var(--border-radius-medium);
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.adicional-form .btn:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+.adicional-form .btn:active {
+    transform: scale(0.98);
+}
+
+/* ========== LISTA DE ADICIONAIS ========== */
+.adicionais-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    border-top: 1px solid var(--background-mid);
+    padding-top: 10px;
+}
+
+/* ========== ITEM INDIVIDUAL DO ADICIONAL (ajustado para melhor layout) ========== */
+.adicional-item {
+    display: flex; /* Mantém o layout flex para alinhar elementos */
+    flex-wrap: nowrap; /* Impede quebras de linha padrão */
+    justify-content: space-between;
+    align-items: center;
+    background: var(--background-light);
+    padding: 12px 18px; /* Aumenta um pouco o padding para mais espaço interno */
+    margin-bottom: 12px; /* Aumenta um pouco a margem inferior */
+    border-radius: var(--border-radius-medium); /* Mantém o border-radius geral do item */
+    font-size: 15px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08); /* Sombra um pouco mais pronunciada */
+    border: 1px solid var(--background-mid); /* Adiciona uma borda sutil para definição */
+}
+
+/* ========== INFORMAÇÕES DO ITEM ADICIONAL (IMAGEM + NOME/PREÇO) ========== */
+.adicional-info {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Aumenta o espaçamento entre a imagem e o texto */
+    color: var(--text-color-dark);
+    flex-grow: 1; /* Permite que as informações ocupem o espaço disponível */
+    min-width: 0; /* Permite que o texto encolha */
+}
+.adicional-info span {
+    font-weight: 500;
+    line-height: 1.4; /* Melhora a legibilidade do texto em várias linhas */
+    /* Garante que o texto quebre automaticamente se for muito longo */
+    word-break: break-word; 
+}
+
+/* Modo de edição (mantido) */
+.editando {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ========== IMAGEM DO ADICIONAL (mantido) ========== */
+.adicional-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: var(--border-radius-small);
+    object-fit: cover;
+    border: 1px solid var(--background-mid);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 600px) {
+    .adicional-thumb {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ========== ENVOLTÓRIO DA IMAGEM (EDITÁVEL - mantido) ========== */
+.img-edit-wrapper {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.img-edit-wrapper input[type="file"],
+.hidden-input {
+    display: none;
+}
+
+.img-edit-wrapper:hover::after {
+    content: 'Mudar Imagem';
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8em;
+    color: #666;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* ========== CAMPOS DE EDIÇÃO (ADICIONAL - mantido) ========== */
+.edit-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.edit-fields input {
+    padding: 6px 8px;
+    border: 1px solid var(--background-mid);
+    border-radius: var(--border-radius-small);
+    font-size: 14px;
+    width: 100%;
+    color: var(--text-color-dark);
+}
+.edit-fields input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(106, 13, 173, 0.2);
+}
+
+/* ========== BOTÕES DE AÇÃO (EDIT/DELETE ADICIONAL) - AGORA MAIORES E ROXO CLARO/ROSADO ========== */
+.adicional-actions {
+    display: flex;
+    gap: 8px; /* Aumenta o espaçamento entre os botões de ação */
+    flex-shrink: 0;
+    margin-top: 0; 
+}
+
+/* Estilo para os botões "Editar" e "Remover" */
+.btn-icon {
+    /* REMOVIDO: background-color: var(--background-mid); para usar o gradiente */
+    border: none; /* Remove a borda para o gradiente brilhar */
+    border-radius: var(--border-radius-large); /* <-- MUITO BORDER-RADIUS (MAIS ARREDONDADO) */
+    padding: 10px 18px; /* <-- BOTÕES MAIORES (AUMENTA O PADDING) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra mais suave */
+    
+    /* NOVO: GRADIENTE ROXO CLARO/ROSADO */
+    background: linear-gradient(135deg, #a777d1, #ff948b); /* Cores mais claras/rosadas */
+    color: var(--text-color-light); /* Texto/ícone branco nos botões */
+    font-size: 0.95rem; /* Ajusta o tamanho da fonte, se houver texto */
+    font-weight: 600; /* Texto um pouco mais bold */
+}
+
+.btn-icon:hover {
+    background: linear-gradient(135deg, #ff948b, #a777d1); /* Inverte o gradiente no hover */
+    transform: translateY(-2px); /* Efeito de flutuar no hover */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Sombra mais forte no hover */
+}
+.btn-icon:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.btn-icon img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    display: block;
+    /* FILTRO BRANCO para os ícones */
+    filter: brightness(0) saturate(100%) invert(1); /* Ícones SEMPRE BRANCOS */
+}
+
+/* RESPONSIVO MOBILE - AJUSTE DE DISPOSIÇÃO DO ITEM ADICIONAL */
+@media (max-width: 600px) {
+    .adicional-item {
+        flex-direction: column; /* Empilha imagem/info e botões verticalmente */
+        align-items: flex-start; /* Alinha tudo à esquerda para melhor leitura */
+        gap: 15px; /* Aumenta o espaço entre os blocos quando empilhados */
+        padding: 15px; /* Ajusta o padding em mobile */
+    }
+    .adicional-info {
+        width: 100%; /* Ocupa a largura total */
+        /* justify-content: flex-start;  Manter padrão do flex-start */
+    }
+    /* O span do adicional-info já quebra palavra por padrão (word-break) */
+    .adicional-actions {
+        width: 100%; /* Ocupa a largura total em mobile */
+        justify-content: space-around; /* <-- DISTRIBUI OS BOTÕES UNIFORMEMENTE */
+        margin-top: 10px; /* Adiciona um espaço acima dos botões quando empilhados */
+    }
+    .btn-icon {
+        padding: 10px 15px; /* Ajusta o padding dos botões em mobile */
+        width: 48%; /* Para que cada botão ocupe quase metade da linha, com gap */
+        max-width: 120px; /* Garante que não fiquem gigantes */
+        font-size: 0.9rem;
+    }
+    .btn-icon img {
+        width: 18px; /* Ajusta o tamanho dos ícones em mobile */
+        height: 18px;
+    }
+}
+
+
+/* ========== DRAG & DROP ========== */
+/* DRAG BARS - Adicione uma classe no HTML para o SVG da barra de drag */
+/* Ex: <img src="bars.svg" class="drag-bar-icon" /> */
+.drag-bar-icon {
+    filter: brightness(0) saturate(100%) invert(0); /* Fica preto */
+}
+/* Se a barra estiver dentro de um botão que se torna ativo */
+.tab-btn.active .drag-bar-icon {
+    filter: brightness(0) saturate(100%) invert(1); /* Fica branco quando a aba está ativa */
+}
+
+
+.drag-over {
+    border: 2px dashed var(--primary-color);
+    background-color: rgba(106, 13, 173, 0.05);
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+
+/* ========== GRID DE OPÇÕES DO USUÁRIO ========== */
+
+.user-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsivo, pelo menos 120px */
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.option-card {
+    background-color: var(--background-light);
+    border: 1px solid var(--background-mid);
+    border-radius: var(--border-radius-medium);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.option-card:hover {
+    background-color: var(--primary-color); /* Roxo no hover */
+    color: var(--text-color-light); /* Texto branco no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.option-card:hover img {
+    filter: brightness(0) saturate(100%) invert(1); /* Torna o SVG branco no hover */
+}
+
+.option-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    transition: filter 0.2s ease;
+    filter: brightness(0) saturate(100%) invert(0.2); /* Tom de cinza escuro para ícones padrões */
+}
+
+.option-card span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color-dark);
+    transition: color 0.2s ease;
+}
+
+.option-card:hover span {
+    color: var(--text-color-light); /* Texto branco no hover */
+}
+
+
+/* --- ADICIONE ESTA NOVA SEÇÃO PARA O CONTROLE DE VOLUME --- */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius-medium);
+    padding: 10px 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.volume-control .volume-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(0.3); /* Um tom de cinza escuro */
+}
+
+.volume-control input[type="range"] {
+    flex-grow: 1; /* Faz a barra ocupar o espaço restante */
+    -webkit-appearance: none; /* Remove estilos padrão do navegador */
+    appearance: none;
+    height: 8px;
+    background: var(--background-mid);
+    border-radius: 5px;
+    outline: none;
+    cursor: grab; /* Cursor de arrastar */
+    transition: background 0.2s ease;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color); /* Pega a cor primária */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volume-control input[type="range"]:active::-webkit-slider-thumb,
+.volume-control input[type="range"]:focus::-webkit-slider-thumb {
+    background: var(--secondary-color); /* Muda de cor ao arrastar/focar */
+    box-shadow: 0 0 0 4px rgba(106, 13, 173, 0.3);
+    cursor: grabbing;
+}
+.volume-control input[type="range"]:active::-moz-range-thumb,
+.volume-control input[type="range"]:focus::-moz-range-thumb {
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(106, 13, 173, 0.3);
+    cursor: grabbing;
+}
+
+.volume-control #volumeValue {
+    font-weight: 600;
+    color: var(--text-color-dark);
+    min-width: 45px; /* Garante espaço para o texto */
+    text-align: right;
+}
+
+/* Estilo para o botão "Salvar Configurações" */
+/* Adicionei 'btn-primary' no HTML, agora estilizo aqui */
+.btn.btn-primary { /* Use .btn para a base e .btn-primary para a cor */
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-color-light);
+    border: none;
+    border-radius: var(--border-radius-medium);
+    background: var(--gradient-purple-orange); /* Seu gradiente roxo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    margin-top: 10px; /* Espaçamento acima do botão */
+}
+
+.btn.btn-primary:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}

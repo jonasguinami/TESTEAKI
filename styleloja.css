@@ -1,0 +1,1489 @@
+/* ===== IMPORT DE FONTES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== RESET E BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== VARIÁVEIS DE CORES ===== */
+:root {
+    --primary-color: #6a0dad; /* Um roxo vibrante */
+    --secondary-color: #ff6f61; /* Um coral vibrante */
+    --text-color-dark: #333; /* Cor principal para textos escuros */
+    --text-color-light: #fff; /* Cor principal para textos claros */
+    --background-light: #f5f5f5; /* Fundo leve para cards/painéis */
+    --background-mid: #e0e0e0; /* Fundo médio */
+    --background-white: #fff; /* Fundo branco puro */
+
+    --border-radius-large: 30px;
+    --border-radius-medium: 15px;
+    --border-radius-small: 8px;
+
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.15); 
+    --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+    --gradient-purple-orange: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --navbar-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); 
+    
+    --blue-primary: #007bff; /* Mantido caso haja outros usos, mas os botões serão gradiente */
+    --blue-hover: #005ecb;
+    --white: #fff;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --green-selected: #2ecc71;
+    --green-selected-border: #27ae60;
+    --text-dark: #222;
+    --text-medium: #666;
+    --text-light: #999;
+}
+
+/* FORÇANDO O BODY A OCUPAR A LARGURA TOTAL DISPONÍVEL */
+body {
+    background: #f4f4f4;
+    padding: 90px 60px 40px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ajustes para dispositivos menores */
+@media (max-width: 768px) {
+    body {
+        padding-top: 150px;
+        padding-left: 20px;
+        padding-right: 20px;
+        align-items: flex-start;
+    }
+}
+
+/* ===== NAVBAR ===== */
+/* ===== ESTILOS DA NAVBAR (MANTIDOS INTACTOS) ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 78px;
+    background: var(--gradient-purple-orange);
+    background-size: 400% 400%;
+    animation: navbarGradientFlow 15s ease infinite;
+    box-shadow: var(--navbar-shadow);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-radius: 0 0 var(--border-radius-large) var(--border-radius-large);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes navbarGradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.navbar-logo {
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.site-version {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background-light);
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.navbar-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navbar-icon-button img {
+    height: 30px;
+    width: 30px;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-icon-button:hover img {
+    transform: scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+
+.navbar-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.6rem 1.2rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--background-light);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-button:hover,
+.navbar-button:focus {
+    background-color: var(--background-light);
+    color: var(--primary-color);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    outline: none;
+    border-color: var(--background-light);
+}
+
+.navbar-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.1s;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px; 
+    }
+    .navbar {
+        height: 120px;
+        padding: 0.5rem 1rem;
+        border-radius: 0 0 25px 25px;
+        flex-wrap: wrap;
+    }
+    .navbar-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .navbar-left {
+        width: 100%;
+        justify-content: center;
+        gap: 0.75rem;
+        order: 1;
+    }
+    .navbar-logo {
+        height: 50px;
+    }
+    .site-version {
+        font-size: 0.75rem;
+    }
+    .navbar-right {
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+        order: 2;
+        margin-top: 5px;
+    }
+    .navbar-button {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+    }
+    .navbar-icon-button img {
+        height: 25px;
+        width: 25px;
+        filter: none;
+    }
+}
+
+
+/* ===== PANEL WRAPPER ===== */
+.panel-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 2200px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* === PANEL E MENU === */
+.panel, .menu {
+    background: #fff;
+    padding: 32px 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    flex: 1 1 0;
+    width: calc(50% - 15px);
+    max-width: none;
+    min-width: 300px;
+    font-size: clamp(16px, 1.5vw, 20px);
+    transition: box-shadow 0.3s ease;
+}
+
+/* ===== TÍTULOS DOS PAINÉIS (ALINHAMENTO ESPECÍFICO) ===== */
+.panel-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.panel-title {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 70%;
+    text-align: left;
+}
+
+/* --- TÍTULOS GRANDES (Aplicando negrito e cor primária) --- */
+.panel-title h2 {
+    font-size: 32px;
+    margin: 0;
+    color: var(--primary-color); /* Cor primária */
+    font-weight: 700; /* Negrito */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.panel-subtitle {
+    font-size: 17px;
+    color: #666;
+    margin: 0;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* ===== FORMULÁRIOS NO PAINEL (NOVOS ESTILOS BASEADOS NO SEU MODELO) ===== */
+/* Removendo as regras antigas do .panel-body input, label, select, textarea */
+/* E substituindo por um estilo .form-group abrangente */
+
+.form-group {
+    margin-bottom: 18px; /* Espaçamento entre os grupos de formulário */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    color: #444; /* Cor do texto do label */
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.panel-body input, /* Aplicando os novos estilos a inputs do panel-body */
+.panel-body select, /* Aplicando os novos estilos a selects do panel-body */
+.panel-body textarea, /* Aplicando os novos estilos a textareas do panel-body */
+.form-group input, /* Para qualquer input dentro de form-group */
+.form-group textarea, /* Para qualquer textarea dentro de form-group */
+.form-group select { /* Para qualquer select dentro de form-group */
+    width: 100%;
+    padding: 12px 16px; /* Padding menor */
+    border: 1.3px solid #ccc; /* Borda mais fina */
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05); /* Sombra interna mais suave */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    margin-bottom: 0; /* Remove a margin-bottom extra que estava no .panel-body input, etc. */
+}
+
+/* Específico para textarea */
+.panel-body textarea,
+.form-group textarea {
+    resize: none;
+    min-height: auto;
+    height: auto;
+    line-height: 1.4;
+}
+
+/* Estilos de foco unificados */
+.panel-body input:focus,
+.panel-body select:focus,
+.panel-body textarea:focus,
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #6ca0ff;
+    box-shadow: 0 0 8px 2px rgba(108, 160, 255, 0.3);
+}
+
+/* ===== BOTÕES EDITAR E REMOVER (Aplicando gradiente) ===== */
+#btnEditarFoto,
+#btnRemoverFoto {
+    font-size: 1.2rem;
+    padding: 14px 32px;
+    border: none; /* Removendo borda para o gradiente */
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease; /* Transição para background */
+    display: inline-block;
+    text-align: center;
+    min-width: 140px;
+    color: var(--text-color-light); /* Texto branco */
+    margin-right: 12px;
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+#btnEditarFoto:hover,
+#btnRemoverFoto:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra consistente */
+}
+
+#btnEditarFoto:active,
+#btnRemoverFoto:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes mobile para os botões */
+@media (max-width: 480px) {
+    #btnEditarFoto,
+    #btnRemoverFoto {
+        font-size: 1rem;
+        padding: 12px 24px;
+        min-width: 120px;
+        margin-right: 8px;
+    }
+}
+
+/* ===== BOTÃO SALVAR PRINCIPAL (GRANDE E LARGURA TOTAL - Aplicando gradiente) ===== */
+.btn-save-info {
+    margin-top: 30px; /* Mais espaço acima do botão */
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    color: var(--text-color-light); /* Texto branco */
+    border: none;
+    padding: 16px 24px; /* Padding maior para um botão grande */
+    border-radius: 26px;
+    font-weight: 700;
+    font-size: 1.2rem; /* Fonte maior */
+    cursor: pointer;
+    transition: background 0.25s ease, box-shadow 0.3s ease, transform 0.2s ease; /* Transição para background */
+    user-select: none;
+    width: 100%; /* FAZ O BOTÃO OCUPAR A LARGURA TOTAL DO PAINEL */
+    display: block; /* Garante que ele ocupe a largura total */
+    text-align: center; /* Centraliza o texto dentro do botão */
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.btn-save-info:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
+    transform: translateY(-0.5px) scale(1.005);
+}
+
+.btn-save-info:active {
+    transform: translateY(0) scale(0.995);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== OPÇÕES DE PAGAMENTO (Estilo ajustado para estado desativado) ===== */
+.payment-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.pay-option {
+    padding: 14px 28px; /* Restaurado o padding original para botões maiores */
+    border: 2px solid #ccc; /* Borda cinza clara para o estado desativado */
+    background-color: #f1f1f1; /* Fundo cinza claro para o estado desativado */
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 1rem; /* Restaurado o font-size original */
+    font-weight: 600;
+    color: #333; /* Texto escuro para o estado desativado */
+    user-select: none;
+    white-space: nowrap;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+    
+    /* Propriedades para alinhar ícone e texto */
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo (ícone + texto) */
+    gap: 10px; /* Ajustado o espaçamento entre ícone e texto para o botão maior */
+}
+
+/* --- Estilos para os ícones dentro dos botões de pagamento (AJUSTADO PARA BOTÕES MAIORES) --- */
+.pay-option .pay-option-icon {
+    width: 22px; /* Aumentado o tamanho do ícone para combinar com o botão maior */
+    height: 22px; /* Aumentado o tamanho do ícone para combinar com o botão maior */
+    flex-shrink: 0; /* Impede que o ícone diminua */
+    filter: brightness(0) saturate(100%) invert(0.2); /* Deixa os ícones cinza escuro por padrão */
+    transition: filter 0.25s ease;
+}
+
+/* Hover no estado DESATIVADO (ainda cinza) */
+.pay-option:hover:not(.selected) {
+    background-color: #e6e6e6; /* Um cinza um pouco mais escuro no hover */
+    transform: scale(1.03);
+    box-shadow: none; /* Sem sombra pesada para o hover do desativado */
+}
+
+/* Selecionado (com gradiente) */
+.pay-option.selected {
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente ao selecionar */
+    border: none; /* Remover borda quando selecionado, pois o gradiente já preenche */
+    color: var(--text-color-light); /* Texto branco */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente no selecionado */
+    background-position: 0% 0%;
+}
+
+/* Quando o botão estiver selecionado, o ícone deve ficar branco */
+.pay-option.selected .pay-option-icon {
+    filter: brightness(0) saturate(100%) invert(1); /* Deixa o SVG branco */
+}
+
+/* Hover no estado SELECIONADO (move o gradiente) */
+.pay-option.selected:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: scale(1.03); /* Mantém o scale */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada no hover */
+}
+
+/* Responsividade extra */
+@media (max-width: 480px) {
+    .pay-option {
+        padding: 12px 22px; /* Ajustado para mobile */
+        font-size: 0.95rem; /* Ajustado para mobile */
+        gap: 8px; /* Ajustado para mobile */
+    }
+    .pay-option .pay-option-icon {
+        width: 20px; /* Ícone um pouco menor no mobile para o botão menor */
+        height: 20px;
+    }
+}
+
+/* ===== FOTO DE PERFIL (Mantido, não é um botão de ação) ===== */
+#fotoPerfilAtual,
+#fotoPerfilNova {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #ddd;
+    object-fit: cover;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+#fotoPerfilAtual:hover,
+#fotoPerfilNova:hover {
+    border-color: var(--primary-color); /* Usando primary-color para hover */
+    transform: scale(1.05);
+}
+
+/* ===== AJUSTES MOBILE PARA FOTO E BOTÕES ===== */
+@media (max-width: 480px) {
+    #fotoPerfilAtual,
+    #fotoPerfilNova {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/*======BOTÃO VISUALIZAR CARDAPIO (Aplicando gradiente)====== */
+.btn-view {
+    order: 0;
+    padding: 18px 36px;
+    font-size: 1.15rem;
+    align-self: center;
+
+    background: var(--gradient-purple-orange);
+    color: var(--text-color-light);
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    margin-left: auto;
+}
+
+/* Efeito de brilho */
+.btn-view::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 150%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: left 0.4s ease;
+}
+
+.btn-view:hover::after {
+    left: 125%;
+}
+
+.btn-view:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.btn-view:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== RESPONSIVIDADE DO BOTÃO EM MOBILE ========== */
+@media (max-width: 480px) {
+    .btn-view {
+        font-size: 0.95rem;
+        padding: 12px 24px;
+        max-width: 100%;
+        width: auto;
+        display: block;
+        margin: 0 auto 12px auto;
+    }
+}
+
+/* ========== RESPONSIVIDADE DO PANEL HEADER GERAL ========== */
+@media (min-width: 481px) {
+    .panel-header {
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .panel-title {
+        max-width: 60%;
+        text-align: left;
+    }
+}
+
+
+/* ========== RESPONSIVO: TABLET (e telas menores que 1023px) ========== */
+@media (max-width: 1023px) {
+    body {
+        padding: 90px 20px 20px 20px;
+        gap: 20px;
+    }
+
+    .panel-wrapper {
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .panel, .menu {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: none;
+        padding: 28px 24px;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .panel-header {
+        padding: 0;
+        margin-bottom: 28px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .panel-title {
+        max-width: none;
+        align-items: flex-start;
+    }
+
+    .panel-title h2, .panel-subtitle {
+        text-align: left;
+    }
+}
+
+/* ========== RESPONSIVO: MOBILE (e telas menores que 480px) ========== */
+@media (max-width: 480px) {
+    body {
+        padding: 150px 10px 10px 10px;
+        gap: 15px;
+    }
+
+    .panel-wrapper {
+        padding: 0 10px;
+        gap: 15px;
+    }
+
+    .panel, .menu {
+        padding: 24px;
+        font-size: 16px;
+    }
+
+    /* ===== SOMENTE AJUSTE HIERARQUIA PANEL HEADER ===== */
+    .panel-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 16px;
+        gap: 12px;
+    }
+
+    .btn-view {
+        order: -1;
+        display: block;
+        margin: 0 auto 12px auto;
+        text-align: center;
+    }
+
+    .panel-title {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        gap: 10px;
+    }
+
+    .panel-title h2 {
+        text-align: center;
+        font-size: 26px;
+        line-height: 1.2;
+        margin-bottom: 0;
+    }
+
+    .panel-subtitle {
+        text-align: center;
+        font-size: 16px;
+        color: #666;
+        line-height: 1.4;
+    }
+}
+
+/* --- Estilos para Banners (lojaedit.html) --- */
+.banner-upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.banner-upload-area:hover {
+    border-color: var(--primary-color); /* Usando primary-color no hover */
+    background-color: #f0e6f7; /* Um tom mais claro do roxo no hover */
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.1); /* Sombra com base no roxo */
+}
+
+.add-banner-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    font-weight: 600;
+}
+
+.add-banner-btn img {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.banner-upload-area:hover .add-banner-btn img {
+    opacity: 1;
+}
+
+.banner-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    background-color: #fff;
+    min-height: 80px;
+    /* --- Ajustes para centralizar os itens --- */
+    align-items: center;    /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+.banner-preview-item {
+    position: relative;
+    width: 150px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    cursor: grab;
+}
+
+.banner-preview-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.banner-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* --- REMOVER BANNER BOTÃO (Aplicando gradiente) --- */
+.remove-banner-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    color: var(--text-color-light); /* Texto branco */
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+    z-index: 10;
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.remove-banner-btn:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: scale(1.1); /* Um pouco maior no hover */
+}
+
+/* Ajustes responsivos para os banners */
+@media (max-width: 480px) {
+    .banner-preview-item {
+        width: 120px;
+        height: 80px;
+    }
+    .banner-preview-container {
+        gap: 10px;
+    }
+}
+/* Container principal para o grupo de horário de funcionamento */
+.horario-funcionamento-group {
+    margin-bottom: 35px;
+}
+
+/* Estilo para o select de dia da semana */
+.horario-funcionamento-group .form-control {
+    width: 100%;
+    padding: 16px 25px;
+    /* APRIMORAMENTO: Aumentando a espessura da borda e garantindo a cor */
+    border: 1.7px solid #dcdcdc; /* Um cinza um pouco mais escuro para ser visível, sem ser forte demais. Pode ajustar o #dcdcdc se quiser um tom específico */
+    border-radius: 35px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    /* Removendo var(--card-bg) se não estiver definida ou for branca */
+    background-color: var(--background-white); /* Usando background-white para consistência */
+    color: var(--text-dark);
+    box-shadow: 0 6px 15px var(--shadow-light);
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23777777%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.5H18.6c-5%200-9.6%202-13.2%206.5-6.6%206.6-6.6%2017.4%200%2024L137.2%20224a17.6%2017.6%200%200%200%2024%200L287%2093.4a17.6%2017.6%200%200%200%200-24z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 25px center;
+    background-size: 18px;
+    outline: none;
+}
+
+.horario-funcionamento-group .form-control:focus {
+    box-shadow: 0 0 0 4px rgba(106, 142, 236, 0.4);
+}
+
+/* Cartão de configuração do dia */
+.dia-config {
+    /* Removendo var(--card-bg) se não estiver definida ou for branca */
+    background-color: var(--background-white); /* Usando background-white para consistência */
+    /* APRIMORAMENTO: Aumentando a espessura da borda e garantindo a cor */
+    border: 1.5px solid #dcdcdc; /* Cinza um pouco mais escuro e visível */
+    box-shadow: 0 10px 25px var(--shadow-medium);
+    border-radius: 40px;
+    padding: 35px;
+    margin-top: 30px;
+    transition: all 0.4s ease;
+}
+
+/* Switch "Fechado o dia todo" */
+.switch-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 35px;
+    font-size: 19px;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.switch-button-only {
+    position: relative;
+    display: inline-block;
+    width: 85px;
+    height: 50px;
+    cursor: pointer;
+    user-select: none;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.switch-button-only input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Removendo var(--border-light) se não estiver definida */
+    background-color: var(--background-mid); /* Usando background-mid para o slider */
+    transition: background-color 0.4s, box-shadow 0.4s;
+    border-radius: 30px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+    /* APRIMORAMENTO: Adicionando a linha cinza clara (border) ao slider */
+    border: 1.5px solid #dcdcdc; /* Um cinza um pouco mais escuro para ser visível */
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    left: 5px;
+    bottom: 5px;
+    background-color: #ffffff; /* Bolinha sempre branca */
+    transition: 0.4s;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1.5px solid #dcdcdc; /* Um cinza um pouco mais escuro para ser visível */
+}
+
+.switch-button-only input:checked + .slider {
+    background-color: var(--primary-color); /* Roxo ativado */
+    box-shadow: inset 0 2px 5px rgba(106, 13, 173, 0.4);
+    /* APRIMORAMENTO: Manter a borda visível mesmo quando ativado, mas com a cor do roxo */
+    border-color: var(--primary-color); /* Borda fica da cor do slider ativado */
+}
+
+.switch-button-only input:checked + .slider:before {
+    transform: translateX(35px);
+    background-color: #ffffff; /* Garante que a bolinha continue branca mesmo ativada */
+}
+
+.switch-button-only input:focus + .slider {
+    box-shadow: 0 0 0 5px rgba(106, 13, 173, 0.4); /* Sombra de foco roxa */
+    outline: none;
+}
+
+.switch-text {
+    position: absolute;
+    font-weight: 600;
+    white-space: nowrap;
+    user-select: none;
+    z-index: 1;
+    color: var(--text-dark);
+    left: 105px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Container de intervalos de horários */
+.horarios-intervalos {
+    margin-top: 30px;
+}
+
+.horario-intervalo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 25px;
+    padding: 25px;
+    /* APRIMORAMENTO: Aumentando a espessura da borda e garantindo a cor */
+    border: 1.5px solid #dcdcdc; /* Cinza um pouco mais escuro e visível */
+    border-radius: 30px;
+    /* Removendo var(--card-bg) se não estiver definida ou for branca */
+    background-color: var(--background-white); /* Usando background-white para consistência */
+    box-shadow: 0 8px 20px var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.horario-intervalo-item:hover {
+    box-shadow: 0 12px 28px var(--shadow-medium);
+}
+
+.horario-intervalo-item input[type="time"] {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 18px;
+    /* APRIMORAMENTO: Aumentando a espessura da borda e garantindo a cor */
+    border: 1.5px solid #dcdcdc; /* Cinza um pouco mais escuro e visível */
+    border-radius: 20px;
+    font-size: 17px;
+    /* Removendo var(--light-bg) se não estiver definida */
+    background-color: var(--background-light); /* Usando background-light para inputs */
+    color: var(--text-dark);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.horario-intervalo-item input[type="time"]:focus {
+    /* Aprimoramento: Mudando a borda no foco para ficar mais visível */
+    border-color: var(--primary-color); /* Roxo no foco */
+    box-shadow: 0 0 0 3px rgba(106, 13, 173, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra de foco roxa */
+    outline: none;
+    background-color: #fcfdff;
+}
+
+/* --- REMOVER INTERVALO BOTÃO (Aplicando gradiente) --- */
+.remove-intervalo-btn {
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    color: var(--text-color-light); /* Texto branco */
+    border: none;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+    min-width: 110px;
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.remove-intervalo-btn:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.remove-intervalo-btn:active {
+    transform: translateY(0);
+}
+
+/* --- ADICIONAR INTERVALO BOTÃO (Aplicando gradiente) --- */
+.add-intervalo-btn {
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    color: var(--text-color-light); /* Texto branco */
+    border: none;
+    padding: 18px 35px;
+    border-radius: 35px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 35px;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    text-align: center;
+    white-space: nowrap;
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.add-intervalo-btn:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.add-intervalo-btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .dia-config {
+        padding: 25px;
+        border-radius: 30px;
+        margin-top: 25px;
+    }
+
+    .horario-funcionamento-group .form-control {
+        font-size: 16px;
+        padding: 14px 20px;
+        margin-bottom: 25px;
+        border-radius: 30px;
+    }
+
+    .switch-container {
+        height: 45px;
+        margin-bottom: 30px;
+    }
+
+    .switch-button-only {
+        width: 75px;
+        height: 45px;
+    }
+
+    .slider {
+        border-radius: 28px;
+    }
+
+    .slider:before {
+        height: 32px;
+        width: 32px;
+        left: 4px;
+        bottom: 5px;
+    }
+
+    .switch-button-only input:checked + .slider:before {
+        transform: translateX(30px);
+    }
+
+    .switch-text {
+        font-size: 16px;
+        left: 90px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .horario-intervalo-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 25px;
+    }
+
+    .horario-intervalo-item input[type="time"] {
+        padding: 12px 15px;
+        font-size: 16px;
+        border-radius: 18px;
+    }
+
+    .remove-intervalo-btn {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 15px;
+        border-radius: 20px;
+        margin-top: 15px;
+        min-width: unset;
+    }
+
+    .add-intervalo-btn {
+        padding: 16px 28px;
+        font-size: 17px;
+        border-radius: 30px;
+        margin-top: 30px;
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* ========== ESTILOS GERAIS DE MODAL ========== */
+/* ========== MODAL GERAL (AGORA PADRONIZADO) ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65); /* Fundo escuro */
+    backdrop-filter: blur(4px); /* Efeito de desfoque no fundo */
+    -webkit-backdrop-filter: blur(4px); /* Compatibilidade Safari */
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Z-index bem alto para estar sempre no topo */
+}
+
+.modal.hidden {
+    display: none; /* Garante que o modal esteja invisível quando tem a classe hidden */
+}
+
+/* CONTEÚDO DO MODAL */
+.modal-content {
+    background-color: var(--background-white); /* Usando a variável que você já tinha */
+    padding: 32px 26px; /* Ajustado para seu padding */
+    border-radius: var(--border-radius-medium); /* Usando seu border-radius */
+    width: 100%;
+    max-width: 480px; /* Seu max-width */
+    box-shadow: var(--shadow-strong); /* Usando sua sombra */
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Seu espaçamento entre elementos */
+    position: relative; /* Essencial para posicionar o botão de fechar */
+    box-sizing: border-box; /* Garante que padding não adicione à largura/altura total */
+    animation: modalFadeIn 0.35s ease; /* Sua animação */
+    transform-origin: center;
+    color: var(--text-color-dark); /* Adicionei para garantir a cor do texto padrão */
+}
+
+.modal-content h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--primary-color); /* Sua cor primária */
+}
+
+/* --- Botão de Fechar do Modal (X) --- */
+.modal-close { /* Antigo .close-btn da outra página, adaptado */
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 26px; /* Tamanho do seu ícone X */
+    height: 26px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+    padding: 0; /* Remover padding padrão de botão */
+    background: none; /* Remover background padrão de botão */
+    border: none; /* Remover borda padrão de botão */
+}
+
+.modal-close:hover {
+    transform: rotate(90deg) scale(1.1);
+    filter: none; /* SVG ORIGINAL SEM FILTROS */
+}
+
+/* Para o `xicon.svg` dentro do `modal-close` */
+.modal-close .close-icon {
+    width: 100%; /* Faz a imagem preencher o botão */
+    height: 100%;
+    display: block; /* Garante que a imagem se comporte como um bloco */
+    filter: none; /* Reafirma que o SVG deve manter sua cor original */
+}
+
+
+/* --- Animação para o Modal --- */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Modal de Opções do Usuário */
+#userOptionsModal .modal-content {
+    max-width: 400px; /* Um pouco menor, já que tem menos conteúdo */
+    text-align: center;
+}
+
+#userOptionsModal h2 {
+    margin-bottom: 20px;
+    color: var(--text-color-dark);
+}
+
+/* ========== GRID DE OPÇÕES DO USUÁRIO (SEUS ESTILOS) ========== */
+
+.user-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsivo, pelo menos 120px */
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+/* --- OPTION CARD (Aplicando gradiente) --- */
+.option-card {
+    background: var(--gradient-purple-orange); /* Aplicado o gradiente */
+    border: none; /* Removendo borda */
+    border-radius: var(--border-radius-medium);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    color: var(--text-color-light); /* Texto branco */
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.option-card:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* Sombra mais forte no hover */
+}
+
+.option-card:hover img {
+    filter: brightness(0) saturate(100%) invert(1); /* Torna o SVG branco no hover */
+}
+
+.option-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    transition: filter 0.2s ease;
+    filter: brightness(0) saturate(100%) invert(1); /* Ícones brancos por padrão no gradiente */
+}
+
+.option-card span {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color-light); /* Texto branco */
+    transition: color 0.2s ease;
+}
+
+.option-card:hover span {
+    color: var(--text-color-light); /* Texto branco no hover */
+}
+
+
+/* --- ADICIONE ESTA NOVA SEÇÃO PARA O CONTROLE DE VOLUME (SEUS ESTILOS) --- */
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius-medium);
+    padding: 10px 15px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.volume-control .volume-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(0.3); /* Um tom de cinza escuro */
+}
+
+.volume-control input[type="range"] {
+    flex-grow: 1; /* Faz a barra ocupar o espaço restante */
+    -webkit-appearance: none; /* Remove estilos padrão do navegador */
+    appearance: none;
+    height: 8px;
+    background: var(--background-mid);
+    border-radius: 5px;
+    outline: none;
+    cursor: grab; /* Cursor de arrastar */
+    transition: background 0.2s ease;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color); /* Pega a cor primária */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.volume-control input[type="range"]:active::-webkit-slider-thumb,
+.volume-control input[type="range"]:focus::-webkit-slider-thumb {
+    background: var(--secondary-color); /* Muda de cor ao arrastar/focar */
+    box-shadow: 0 0 0 4px rgba(106, 13, 173, 0.3);
+    cursor: grabbing;
+}
+.volume-control input[type="range"]:active::-moz-range-thumb,
+.volume-control input[type="range"]:focus::-moz-range-thumb {
+    background: var(--secondary-color);
+    box-shadow: 0 0 0 4px rgba(106, 13, 173, 0.3);
+    cursor: grabbing;
+}
+
+.volume-control #volumeValue {
+    font-weight: 600;
+    color: var(--text-color-dark);
+    min-width: 45px; /* Garante espaço para o texto */
+    text-align: right;
+}
+
+/* Estilo para o botão "Salvar Configurações" (SEUS ESTILOS) */
+.btn.btn-primary { /* Use .btn para a base e .btn-primary para a cor */
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-color-light);
+    border: none;
+    border-radius: var(--border-radius-medium);
+    background: var(--gradient-purple-orange); /* Seu gradiente roxo */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    margin-top: 10px; /* Espaçamento acima do botão */
+    background-size: 200% 100%; /* Para o efeito de hover do gradiente */
+    background-position: 0% 0%;
+}
+
+.btn.btn-primary:hover {
+    background-position: 100% 0%; /* Move o gradiente no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.btn.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal de Configurações do Usuário */
+#userConfigModal .modal-content {
+    max-width: 600px;
+}
+
+#userConfigModal h2 {
+    margin-bottom: 20px;
+    color: var(--text-color-dark);
+}
+
+#userConfigModal .form-group {
+    margin-bottom: 18px;
+}
+
+#userConfigModal label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-color-dark);
+}
+
+#userConfigModal input[type="text"],
+#userConfigModal input[type="email"],
+#userConfigModal input[type="tel"] {
+    width: calc(100% - 20px); /* 100% menos o padding */
+    padding: 10px;
+    border: 1px solid var(--background-mid); /* Borda sutil */
+    border-radius: var(--border-radius-medium);
+    font-size: 1em;
+    box-sizing: border-box; /* Inclui padding e border na largura */
+    color: var(--text-color-dark);
+    background-color: var(--background-light);
+}
+
+/* Modal de Suporte e Notificações (podem ter estilos semelhantes ao userConfigModal) */
+#supportModal .modal-content,
+#notificationModal .modal-content {
+    max-width: 500px;
+    text-align: center; /* Centraliza o texto para estes modais */
+}
+
+#supportModal h2,
+#notificationModal h2 {
+    margin-bottom: 15px;
+    color: var(--text-color-dark);
+}
+
+#supportModal p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--text-color-dark);
+}
+
+#supportModal a {
+    color: var(--primary-color); /* Usa sua cor primária para links */
+    text-decoration: none;
+}
+
+#supportModal a:hover {
+    text-decoration: underline;
+}
+
+/* Conteúdo de notificação */
+#notificationContent {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed var(--background-mid); /* Borda tracejada sutil */
+    border-radius: var(--border-radius-medium);
+    color: var(--text-color-dark);
+    background-color: var(--background-mid); /* Fundo levemente diferente */
+}
