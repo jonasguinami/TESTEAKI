@@ -118,7 +118,7 @@
                         <span class="item-quantidade">1</span>
                         <button class="qty-btn add-qty"><img src="add.svg" alt="Adicionar"></button>
                     </div>
-                    <button class="btn-editar-adicionais">Editar Adicionais</button>
+                    <button class="btn-editar-adicionais">Editar</button>
                     <button class="btn-toggle-adicionais"><img src="down.svg" alt="Mostrar adicionais"></button>
                 </div>
             </div>
@@ -135,5 +135,59 @@
         </div>
     </div>
     <div id="categoriaCarrossel" class="categoria-carrossel"></div>
+
+
+<div id="finalizarPedidoModal" class="modal"> <div class="modal-final-content">
+        <button class="modal-close" id="fecharFinalizarPedido" aria-label="Fechar modal">
+            <img src="xicon.svg" alt="Fechar" class="close-icon"/>
+        </button>
+        <h2>Confirmar Pedido</h2>
+        
+        <div class="form-group">
+            <label for="clienteNome">Nome:</label>
+            <input type="text" id="clienteNome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+            <label for="clienteCelular">Celular:</label>
+            <input type="tel" id="clienteCelular" placeholder="(XX) XXXXX-XXXX" required>
+        </div>
+
+        <div class="delivery-options">
+            <button class="delivery-option-btn selected" data-type="retirar">Retirar</button>
+            <button class="delivery-option-btn" data-type="entrega">Entrega</button>
+        </div>
+
+        <div id="enderecoGroup" class="form-group hidden">
+            <label for="clienteEndereco">Endereço:</label>
+            <input type="text" id="clienteEndereco" placeholder="Rua, número, bairro, complemento" required>
+        </div>
+
+        <div class="form-group">
+    <label for="paymentMethodSelect">Forma de Pagamento:</label>
+    <div id="paymentMethodSelect" class="custom-select-wrapper">
+        <div class="custom-select-trigger">
+            <img src="card.svg" alt="Ícone de pagamento" class="selected-option-icon"/>
+            <span class="selected-option-text">Selecione uma forma de pagamento</span>
+            <img src="down.svg" alt="Abrir" class="select-arrow-icon"/>
+        </div>
+        <div class="custom-options-list hidden-options">
+            </div>
+    </div>
+</div>
+
+        <div class="form-group">
+            <label for="cupomInput">Cupom de Desconto:</label>
+            <input type="text" id="cupomInput" placeholder="Insira seu cupom (opcional)">
+        </div>
+
+        <p class="modal-total-value">Total: <span id="finalizarPedidoTotal">R$ 0,00</span></p>
+
+        <div class="modal-footer-actions">
+            <button id="revisarPedidoBtn" class="cancelar-btn">Revisar</button>
+            <button id="finalizarPedidoWhatsappBtn" class="adicionar-btn">Finalizar Pedido</button>
+        </div>
+    </div>
+</div>
+
 
 </body>
